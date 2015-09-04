@@ -1,0 +1,26 @@
+<h2>Manage clients for <%= @stylist.name() %></h2>
+
+<br>
+<h3>Update Stylist Details</h3>
+<form action="/stylists/<%= @stylist.id() %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Stylist Name</label>
+  <input type="text" name="name" id="name" class="form-control" value="<%= @stylist.name() %>">
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+<h3> Add a new Client</h3>
+<form action="/Stylists/client_new" method="post">
+  <input id = "stylist_id" name="stylist_id" type="hidden" value="<%@stylist.id()%>">
+  <label for="name">Client name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit" class="btn btn-primary">Add Client</button>
+</form>
+
+<p>
+ <%= @stylist.name()%> does not have clients yet
+</p>
+
+<br><br>
+
+<a href="/stylists" class="btn btn-success">Back</a>
