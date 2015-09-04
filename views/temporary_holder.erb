@@ -1,0 +1,108 @@
+% if @clients.any?() %>
+<br>
+
+  <label for="client-checkbox-listing">Clients to Add</label>
+    <% @clients.each() do |client| %>
+  <div class="checkbox" id="client-checkbox-listing">
+<label>
+  <!-- TODO: pre-check clients already assigned to this stylist -->
+  <input type="checkbox" id="client_<%= client.name().gsub(/\s+/, "") %>" name="client_ids[]" value="<%= client.id() %>"><%= client.name() %>
+</label>
+  </div>
+
+ % end %>
+<% end %>
+</div>
+<button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+<% if @clients.any?() %>
+  <% @clients.each() do |client|
+  <li> <%= client.name()%>
+<%else%>
+  <form action="/add clients" method post>
+      <input type="hidden" name="id" value="<%=client.id()%>"
+      <@clients.each do |venue| %>
+      <input type="checkbox" name="client_checkbox[]" value="<%=@client.id()%>"<%client.name%>
+      <%end%>
+      <button name="button">Associate</button>
+    </form>
+ <%end%>
+
+ <div class="form-group">
+    <% if @clients.any?() %>
+    <br>
+      <label for="client-checkbox-listing">Clients to Add</label>
+        <% @clients.each() do |client| %>
+          <div class="checkbox" id="client-checkbox-listing">
+            <label>
+              <!-- TODO: pre-check clients already assigned to this stylist -->
+              <input type="checkbox" id="client_<%= client.name().gsub(/\s+/, "") %>" name="client_ids[]" value="<%= client.id() %>"><%= client.name() %>
+            </label>
+          </div>
+        <% end %>
+    <% end %>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+====================================================================stylist
+<div class="form-group">
+   <% if @clients.any?() %>
+   <br>
+     <label for="client-checkbox-listing">Clients to Add</label>
+       <% @clients.each() do |client| %>
+         <div class="checkbox" id="client-checkbox-listing">
+           <label>
+             <!-- TODO: pre-check clients already assigned to this stylist -->
+             <input type="checkbox" id="client_<%= client.name().gsub(/\s+/, "") %>" name="client_ids[]" value="<%= client.id() %>"><%= client.name() %>
+           </label>
+         </div>
+       <% end %>
+   <% end %>
+ </div>
+ <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+<% if @stylist.clients().any?() %>
+<h3>Your Current List of Clients:</h3>
+<div id="client_listing">
+ <ul>
+   <% @stylist.clients().each() do |client| %>
+     <li><a href="/clients/<%= client.id() %>"><%= client.name() %></a></li>
+   <% end %>
+ </ul>
+</div>
+<% else %>
+<p>
+ <%= @stylist.name()%> does not have clients yet
+</p>
+<% end %>
+
+<br><br>
+====================================================================stylist
+<div class="form-group">
+   <% if @clients.any?() %>
+   <br>
+     <label for="client-checkbox-listing">Clients to Add</label>
+       <% @clients.each() do |client| %>
+         <li><%=client.name()%></li>
+         <%end%>
+         <%else%>
+         <form action="/client_associate" method ="post">
+           <input type="hidden" name="id" value="<%=@stylists.id()%>"
+           <% @clients.each do |client|%>
+
+             <input type="checkbox"  name="client_ch[eckbox]" value="<%= client.id() %>"><%= client.name() %>
+       <% end %>
+    <button type="submit" class="btn btn-primary">Associate</button>
+  </form>
+  <% end %>
+</div>
+
+<h3> Add a new Client</h3>
+<form action="/Stylists/new_client" method="post">
+  <input id = "stylist_id" name="stylist_id" type="hidden" value="<%stylist.id()%>">
+  <label for="name">Client name</label>
+  <input id="description" name="description" type="text">
+  <button type="submit">Add Client</button>
+</form>
