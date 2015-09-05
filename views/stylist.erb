@@ -18,7 +18,20 @@
 </form>
 
 <p>
- <%= @stylist.name()%> does not have clients yet
+ These are clients for<%= @stylist.name()%> 
+</p>
+
+<% if @clients.any?() %>
+  <ul>
+    <% @clients.each() do |client| %>
+      <li>Client: <a href="/clients/<%= client.id() %>"><%= client.name() %></a>
+    <% end %>
+  </ul>
+<% else %>
+  <p>
+    No clients Listed
+  </p>
+<% end %>
 </p>
 
 <br><br>
