@@ -123,6 +123,7 @@ end
    stylist_id = params.fetch("stylist_id").to_i()
   @client = Client.new({:name =>name,:id=>nil, :stylist_id=>stylist_id})
   @client.save()
+  @stylist = Stylist.find(params.fetch('stylist_id').to_i())
   @clients=Client.all()
    erb(:stylist)
  end
